@@ -1,0 +1,23 @@
+{
+  "name": "backend-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OlafGG/backend-express.git"
+  },"author": "Uriel Olaf Baeza Baeza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OlafGG/backend-express/issues"
+  },
+  "homepage": "https://github.com/OlafGG/backend-express#readme",
+  "dependencies": {
+
+  }
+}
