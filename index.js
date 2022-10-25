@@ -1,22 +1,24 @@
-const express = require('express');
+const express = require('express');   //Importing Express and faker
 const faker = require('faker');
 const app = express();
 const port = 3000;
 
+
+//First get from aplication
 app.get('/', (req, res) =>{
-  return res.status(200).send('Hola mi server en express');
+  return res.status(200).send('Hi, this is my server');
 });
 
 app.get('/home', (req, res)=>{
-  return res.status(200).send('Home')
+  return res.status(200).send('Home!');
 });
 
 app.get('/categories', (req, res)=>{
-  return res.status(200).send('Hola, soy una categoria')
+  return res.status(200).send('Hi, im a new category!');
 });
 
 app.get('/nueva-ruta', (req, res)=>{
-  return res.status(200).send('Hola, soy una nueva ruta')
+  return res.status(200).send('Hi, im a new route');
 });
 
 app.get('/people', (req, res) => {
@@ -37,7 +39,7 @@ app.get('/users', (req, res)=>{
       offset
     });
   }else {
-    return res.status(200).send('No hay nada mano')
+    return res.status(200).send('Nothing at users');
   }
 });
 
@@ -47,7 +49,7 @@ app.get('/products', (req, res)=>{
   const limit = size || 10;
   for (let index = 0; index < limit; index++) {
     products.push({
-      name: faker.commerce.productName(),
+      name: faker.commerce.productName(),               //Use facker librari to make datafake
       price: parseInt(faker.commerce.price(), 10),
       image: faker.image.imageUrl(),
     });
@@ -58,7 +60,7 @@ app.get('/products', (req, res)=>{
 
 
 app.get('products/filter', (req, res)=>{
-  res.status(200).send('soy un filtro');
+  res.status(200).send('Im a filter');
 });
 
 app.get('/products/:id', (req, res)=>{
@@ -66,7 +68,7 @@ app.get('/products/:id', (req, res)=>{
   return res.status(200).json(
     {
       id,
-      name: 'Producto 2',
+      name: 'Product 2',
       price: '2000'
     }
   );
@@ -111,5 +113,5 @@ app.get('/people/:id', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Mi port es: ${port}`);
+  console.log(`My port is: ${port}`);    //Using ECMAScript 6 to make easier to read
 });
