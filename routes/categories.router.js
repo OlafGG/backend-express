@@ -1,28 +1,20 @@
 const express = require('express');   //Importing Express and faker
 const faker = require('faker');
 
-const router = express.Router();
+const CategoriesService = require('./../services/categories.services');
 
+const router = express.Router();
+const service = new CategoriesService();
 
 router.get('/', (req, res)=>{
-  return res.status(200).send('Its categories');
+  const categories = service.find();
+  return res.status(200).send(categories);
 });
 
-router.get('/:categoryId', (req, res) => {
-  const {categoryId} = req.params;
-  console.log(categoryId);
-  if (categoryId === 1) {
-    return res.status(200).json({
-      categoryId,
-      name: 'Food',
-      products: 1000
-    })
-  }
-  return res.status(200).json({
-    categoryId,
-    name: 'Others',
-    products: 2000
-  })
+router.get('/:id', (req, res) => {
+  const { id } = req.params;
+  const categories = service.findOne(id);
+  return res.status(200).json(categories);
 });
 
 

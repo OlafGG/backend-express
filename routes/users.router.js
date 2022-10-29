@@ -1,22 +1,18 @@
 const express = require('express');   //Importing Express and faker
 const faker = require('faker');
 
+const UsersService = require('./../services/users.service');
+
 const router = express.Router();
+const service = new UsersService();
 
 router.get('/', (req, res) => {
-  const limit = 10;
-  const users = [];
-  for (let index = 0; index < limit; index++) {
-    users.push({
-      name: faker.name.findName(),
-      address: faker.address.streetAddress(),   //Use facker librari to make datafake
-      Email:  faker.internet.email(),
-      Card: faker.helpers.createCard(),
-    });
-
-  }
+  const users = service.find();
   return res.status(200).json(users);
 });
+
+/*
+USING LIMITS
 
 router.get('/limits', (req, res)=>{
   const { limit, offset } = req.query;
@@ -28,15 +24,12 @@ router.get('/limits', (req, res)=>{
   }else {
     return res.status(200).send('Nothing at users');
   }
-});
+});*/
 
 router.get('/:id', (req, res) => {
   const { id } = req.params;
-  res.json({
-      id,
-      name: 'Arturo',
-      type: 'employee'
-  });
+  const users = service.findOne(id);
+  return res.status(200).json(users)
 });
 
 module.exports = router;
